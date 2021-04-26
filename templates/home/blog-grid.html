@@ -1,0 +1,43 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block title %} Blog - Portfolio {% endblock %}
+
+{% block content %}
+<main id="main" >
+  <!-- ======= Blog Grid ======= -->
+  <div id="journal-blog" class="text-left  paddsections">
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>Blogs</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="journal-block">
+        <div class="row">
+          {% for blog in blogs %}
+          <div class="col-lg-4 col-md-6">
+            <div class="journal-info mb-30">
+
+              <a href="{% url 'home:blog_single' blog.id %}"><img src="{{blog.thumbnail.url}}" class="img-responsive" alt="img"></a>
+
+              <div class="journal-txt">
+
+                <h4><a href="{% url 'home:blog_single' blog.id %}">{{blog.title}}</a></h4>
+                <p class="separator">{{blog.sapo}}</p>
+
+              </div>
+
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+            <span><-- Number_Page --></span>
+
+      </div>
+    </div>
+  </div><!-- End Blog Grid -->
+  {% include 'home/contact.html'%}
+</main><!-- End #main -->
+
+{% endblock %}

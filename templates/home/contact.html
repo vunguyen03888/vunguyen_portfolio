@@ -1,0 +1,67 @@
+<!-- ======= Contact Section ======= -->
+<div id="contact" class="paddsection">
+  <div class="container">
+    <div class="contact-block1">
+      <div class="row">
+
+        <div class="col-lg-6">
+          <div class="contact-contact">
+
+            <h2 class="mb-30">CONTACTS</h2>
+
+            <ul class="contact-details">
+              {% for set in setting %}
+              <li><i class="bi bi-house-fill"></i><span> {{ set.address }}</span></li>
+              <li><span>{{ set.street }}</span></li>
+              <li><i class="bi bi-telephone-outbound-fill"></i><span> {{ set.phone }}</span></li>
+              <li><i class="bi bi-mailbox2"></i><span> {{ set.fax }}</span></li>
+              <li><i class="bi bi-envelope-open-fill"></i><span> {{ set.email }}</span></li>
+              {% endfor %}
+            </ul>
+
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <form action="{% url 'home:index' %}" method="post">
+            {% csrf_token %}
+            <div class="row gy-3 mb-3">
+              <div class="col-lg-6">
+<!--                <label for="register-form-name"><b>First Name:</b></label>&ndash;&gt;-->
+                  {{ form.name }}
+              </div>
+
+              <div class="col-lg-6">
+<!--                 <label for="register-form-email">Email:</label>&ndash;&gt;-->
+                  {{ form.email }}
+              </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+<!--              <label for="register-form-subjects"><b>Subjects:</b></label>&ndash;&gt;-->
+                {{ form.subject }}
+            </div>
+
+            <div class="col-lg-12">
+<!--              <label for="register-form-messages">Messages:</label>&ndash;&gt;-->
+                {{ form.messages }}
+            </div>
+
+            <div class="col-lg-12">
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-{{message.tags}}" role="alert">
+                {{ message }}
+              </div>
+              {% endfor %}
+              {% endif %}
+            </div>
+
+            <div class="mt-0">
+              <input style="background:red;" type="submit" class=" input-button btn btn-primary btn-send rounded" value="Send message">
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- End Contact Section -->

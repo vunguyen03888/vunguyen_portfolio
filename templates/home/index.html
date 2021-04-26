@@ -1,0 +1,162 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'home/hero.html'%}
+<main id="main">
+
+  <!-- ======= About Section ======= -->
+  <div id="about" class="paddsection">
+    {% for set in setting %}
+    <div class="container">
+      <div class="row justify-content-between">
+
+        <div class="col-lg-4 ">
+          <div class="div-img-bg">
+            <div class="about-img">
+              <img src="{{set.icon_me.url}}" class="img-responsive" alt="me">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="about-descr">
+            <p class="p-heading">{{set.my_sapo}}</p>
+            <p class="separator">{{set.my_description}}</p>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div><!-- End About Section -->
+
+  <!-- ======= Services Section ======= -->
+  <div id="services">
+    <div class="container">
+
+      <div class="services-slider swiper-container" data-aos="fade-up" data-aos-delay="400">
+        <div class="swiper-wrapper">
+          {% for icon in slidericon %}
+          <div class="swiper-slide">
+            <div class="services-block">
+              <i class="{{icon.icon}}"></i>
+              <span>{{icon.title}}</span>
+              <p class="separator">{{icon.sapo}}</p>
+            </div>
+          </div><!-- End testimonial item -->
+          {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+    </div>
+
+  </div><!-- End Services Section -->
+
+  <!-- ======= Portfolio Section ======= -->
+  <div id="portfolio" class="paddsection">
+
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>My Portfolio</h2>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <ul id="portfolio-flters">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-P1">P1</li>
+            <li data-filter=".filter-P2">P2</li>
+            <li data-filter=".filter-P3">P3</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row portfolio-container">
+        {% for pr1 in product1 %}
+        <div class="col-lg-4 col-md-6 portfolio-item filter-P1">
+          <img src="{{pr1.image.url}}" class="img-fluid" alt="">
+          <div class="portfolio-info">
+            <h4>{{pr1.title}}</h4>
+            <p>{{pr1.description}}</p>
+            <a href="{{pr1.image.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title={{pr1.title}}><i class="bx bx-plus"></i></a>
+            <a href="#portfolio" class="details-link" title={{pr1.title}}><i class="bx bx-link"></i></a>
+          </div>
+        </div>
+        {% endfor %}
+
+        {% for pr2 in product2 %}
+        <div class="col-lg-4 col-md-6 portfolio-item filter-P2">
+          <img src="{{pr2.image.url}}" class="img-fluid" alt="">
+          <div class="portfolio-info">
+            <h4>{{pr2.title}}</h4>
+            <p>{{pr2.description}}</p>
+            <a href="{{pr2.image.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title={{pr2.title}}><i class="bx bx-plus"></i></a>
+            <a href="#portfolio" class="details-link" title={{pr2.title}}><i class="bx bx-link"></i></a>
+          </div>
+        </div>
+        {% endfor %}
+
+        {% for pr3 in product3 %}
+        <div class="col-lg-4 col-md-6 portfolio-item filter-P3">
+          <img src="{{pr3.image.url}}" class="img-fluid" alt="">
+          <div class="portfolio-info">
+            <h4>{{pr3.title}}</h4>
+            <p>{{pr3.description}}</p>
+            <a href="{{pr3.image.url}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title={{pr3.title}}><i class="bx bx-plus"></i></a>
+            <a href="#portfolio" class="details-link" title={{pr3.title}}><i class="bx bx-link"></i></a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </div><!-- End Portfolio Section -->
+
+  <!-- ======= Journal Section ======= -->
+  <div id="journal" class="text-left paddsection">
+
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>Blogs</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="journal-block">
+        <div class="row">
+          {% for blog in blogs %}
+          {% if blog.status == True %}
+          <div class="col-lg-4 col-md-6">
+            <div class="journal-info">
+              <a href="{% url 'home:blog_single' blog.id %}"><img src="{{blog.thumbnail.url}}" class="img-responsive" alt="img"></a>
+              <div class="journal-txt">
+                <h4><a href="blog-single.html">{{blog.title}}</a></h4>
+                <p class="separator">{{blog.sapo}}</p>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- End Journal Section -->
+
+  {% include 'home/contact.html'%}
+
+</main><!-- End #main -->
+
+{% endblock %}
+
